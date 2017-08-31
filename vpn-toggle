@@ -1,0 +1,12 @@
+#!/bin/bash
+# Check status of connection cs
+# if connected -> disconnect
+# else connect
+#
+result=$(nmcli --terse --fields name c show --active | grep "^cs$")
+if [ -n "$result" ]; then
+	nmcli c down cs
+else
+	nmcli c up cs
+fi
+
